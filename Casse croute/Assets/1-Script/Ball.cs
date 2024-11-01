@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Ball : MonoBehaviour
 {
+    private Vector2 inDirection;
+    private Vector2 inNormal;
+    private bool kicked = false;
+    private float speed =1.0f;
     private Rigidbody2D rb;
     private GameObject player;
     private GameObject otherBall = null;
@@ -15,12 +19,33 @@ public class Ball : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        inDirection = rb.velocity;
+        inNormal = collision.contacts[0].normal;
+        Vector2.Reflect(inDirection,inNormal);
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.tag == "Player")
+        if (rb.velocity.x > 0)
         {
-            rb.velocity += new Vector2(0,0.2f) ;
+            rb.velocity += new Vector2(0.01f,0);
         }
+        else
+        {
+            rb.velocity -= new Vector2(0.1f,0);
+        }
+        if (rb.velocity.y > 0)
+        {
+            rb.velocity += new Vector2(0, 0.01f);
+        }
+        else
+        {
+            rb.velocity -= new Vector2(0, 0.01f);
+        }
+
     }
 
     private void OnBecameInvisible()
@@ -37,6 +62,7 @@ public class Ball : MonoBehaviour
     {
         if (context.started && transform.parent != null)
         {
+            kicked = true;
             rb.AddForce(transform.right * (transform.parent.position.x/7) * -100);
             rb.AddForce(transform.up * 100);
         }

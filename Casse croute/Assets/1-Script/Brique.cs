@@ -38,6 +38,7 @@ public class Brique : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ball")
         {
+            collisionRemaining --;
             if (collisionRemaining == 1)
             {
                 SpriteRenderer.color = Color.white;
@@ -54,15 +55,14 @@ public class Brique : MonoBehaviour
             {
                 SpriteRenderer.color = Color.blue;
             }
-            collisionRemaining -= 1;
             if (collisionRemaining < 1)
             {
-                randomizerBonus = Random.Range(-1, 15);
-                if (randomizerBonus == 0)
-                {
-                    randomizerBonus = Random.Range(-1, bonus.Length);
-                    Instantiate(bonus[randomizerBonus]);
-                }
+                //randomizerBonus = Random.Range(-1, 15);
+                //if (randomizerBonus == 0)
+                //{
+                //    randomizerBonus = Random.Range(-1, bonus.Length);
+                //    Instantiate(bonus[randomizerBonus]);
+                //}
                 Destroy(gameObject);
             }
         }
