@@ -4,23 +4,34 @@ using UnityEngine;
 
 public class Life : MonoBehaviour
 {
+    [SerializeField] private GameObject ball;
+    private GameObject ballPrefab;
+    private GameObject ballFinder =null;
     private int lifePoint = 3;
     public int LifePoint 
     {  
         get { return lifePoint; } 
         set {lifePoint = value; } 
     }
-    void Start()
+
+    private void Start()
     {
-        
+        ballPrefab = Instantiate(ball, transform.position, Quaternion.identity);
+        ballPrefab.transform.parent = transform;
+        //Instantiate(ball);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (lifePoint <1 )
+        if (lifePoint >1 )
         {
-
+            ballFinder = GameObject.FindGameObjectWithTag("Ball");
+            if ( ballFinder = null )
+            {
+                ballPrefab = Instantiate(ball,transform.position,Quaternion.identity);
+                ballPrefab.transform.parent = transform;
+                //Instantiate(ball);
+            }
         } 
     }
 }

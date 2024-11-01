@@ -6,10 +6,10 @@
             "id": "eea44d06-cdff-4790-b328-c84ef0932f12",
             "actions": [
                 {
-                    "name": "Mouse",
+                    "name": "Any controle",
                     "type": "Value",
                     "id": "6671ebf9-3f72-4bb0-a146-171765583a37",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -17,81 +17,109 @@
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
+                    "name": "Keyboard",
                     "id": "de200424-569d-4801-ad21-ebf547c32086",
-                    "path": "2DVector",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Mouse",
+                    "action": "Any controle",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "left",
+                    "name": "Negative",
                     "id": "73b8b193-5e7b-4bb5-94a8-d59b331d1eb0",
                     "path": "<Keyboard>/#(Q)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Mouse",
+                    "action": "Any controle",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
+                    "name": "Positive",
                     "id": "06266cd2-cd45-4fbf-8017-d6e6b9ab6fde",
                     "path": "<Keyboard>/#(D)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Mouse",
+                    "action": "Any controle",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "fcca2852-6751-467b-b7fb-a9307abfedd2",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "2D Vector",
+                    "name": "Stick",
                     "id": "f594a97f-e8c4-4aa2-a711-657cb05e57bb",
-                    "path": "2DVector",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Mouse",
+                    "action": "Any controle",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "left",
+                    "name": "Negative",
                     "id": "7fce3e74-4dae-4a7f-aaa9-30c1f07d33c8",
                     "path": "<Gamepad>/dpad/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Mouse",
+                    "action": "Any controle",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
+                    "name": "Positive",
                     "id": "aaa46bfc-0a90-467b-b516-522d38f0d1f5",
                     "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Mouse",
+                    "action": "Any controle",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Ball",
+            "id": "963dcdda-ece2-48c1-af6b-d75adf9d550a",
+            "actions": [
+                {
+                    "name": "Launching Ball",
+                    "type": "Value",
+                    "id": "e67b5071-3535-4fc4-b24c-5793a204da07",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c4afdc8c-6bfb-4101-94d5-e47b13035955",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Launching Ball",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ba8bf27b-f5c7-465e-b2b1-16d6cd0e3820",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Launching Ball",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

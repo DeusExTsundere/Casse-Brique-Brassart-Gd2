@@ -6,40 +6,27 @@ using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
-    [SerializeField] private int speedDivide = 10;
-    private sideLimit sideReach = sideLimit.none;
+    [SerializeField] private float speed = 10;
     RaycastHit2D hit;
-    private Vector2 direction;
-    private Vector2 position;
+    private float direction;
+    private Vector2 new_position;
     private void Update()
     {
-        if(Physics2D.Raycast(transform.position, transform.forward,0.5f))
+        new_position = transform.position;
+        if ( direction > 0 && transform.position.x < 7)
         {
-            if(hit.collider.gameObject.GetComponent<TagAttribute>)
+            new_position.x += speed/50;
         }
-        position = transform.position;
-        if (true)
+        else if ( direction < 0 && transform.position.x > -7 )
         {
-            position += direction;
+            new_position.x -= speed/50;
         }
-        else if (true)
-        {
-            position -= -direction;
-        }
-
-        transform.position = position;
+        transform.position = new_position;
     }
 
     public void ListenerControl(InputAction.CallbackContext context)
     {
-        direction = context.ReadValue<Vector2>();
-        direction.x = direction.x / speedDivide;
+        direction = context.ReadValue<float>();    
     }
 }
 
-enum sideLimit
-{
-    left,
-    right,
-    none
-}
