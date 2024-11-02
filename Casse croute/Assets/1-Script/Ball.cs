@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Ball : MonoBehaviour
 {
+    private AudioSource m_AudioSource;
     private Vector2 inDirection;
     private Vector2 inNormal;
     private bool kicked = false;
@@ -15,13 +16,16 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
+        m_AudioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        rb.Sleep();
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        m_AudioSource.Play();
         inDirection = rb.velocity;
         inNormal = collision.contacts[0].normal;
         Vector2.Reflect(inDirection,inNormal);
@@ -50,18 +54,19 @@ public class Ball : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        otherBall = GameObject.FindGameObjectWithTag("Ball");
-        if (otherBall = null)
-        {
-            player.GetComponent<Life>().LifePoint -= 1;
-        }
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        player.GetComponent<Life>().CheckLife();
     }
 
     public void kick(InputAction.CallbackContext context)
     {
         if (context.started && transform.parent != null)
         {
+            rb.IsAwake();
             kicked = true;
             rb.AddForce(transform.right * (transform.parent.position.x/7) * -100);
             rb.AddForce(transform.up * 100);

@@ -1,37 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Life : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI lifeText;
     [SerializeField] private GameObject ball;
-    private GameObject ballPrefab;
+    [SerializeField] private GameObject ballPrefab;
+    private string text;
     private GameObject ballFinder =null;
     private int lifePoint = 3;
-    public int LifePoint 
-    {  
-        get { return lifePoint; } 
-        set {lifePoint = value; } 
-    }
 
     private void Start()
     {
         ballPrefab = Instantiate(ball, transform.position, Quaternion.identity);
         ballPrefab.transform.parent = transform;
-        //Instantiate(ball);
+        text = "Life : " + lifePoint;
+        lifeText.SetText(text);
     }
 
-    void Update()
+    public void CheckLife()
     {
-        if (lifePoint >1 )
+        ballFinder = GameObject.FindGameObjectWithTag("Ball");
+        if ( ballFinder == null )
         {
-            ballFinder = GameObject.FindGameObjectWithTag("Ball");
-            if ( ballFinder = null )
+            lifePoint--;
+            if ( lifePoint > 0)
             {
-                ballPrefab = Instantiate(ball,transform.position,Quaternion.identity);
+                ballPrefab = Instantiate(ball, transform.position, Quaternion.identity);
                 ballPrefab.transform.parent = transform;
-                //Instantiate(ball);
             }
-        } 
+        }
+        text = "Life : " + lifePoint;
+        lifeText.SetText(text);
     }
 }
