@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.iOS;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 
 public class Brique : MonoBehaviour
 {
+
     [SerializeField,Range(1,4)] private int collisionRemaining = 1;
-    [SerializeField] private GameObject[] bonus;
+    [SerializeField] private GameObject bonus;
+    private int randomBonus;
     private SpriteRenderer SpriteRenderer;
     private int randomizerBonus;
 
@@ -57,14 +60,18 @@ public class Brique : MonoBehaviour
             }
             if (collisionRemaining < 1)
             {
-                //randomizerBonus = Random.Range(-1, 15);
-                //if (randomizerBonus == 0)
-                //{
-                //    randomizerBonus = Random.Range(-1, bonus.Length);
-                //    Instantiate(bonus[randomizerBonus]);
-                //}
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        randomBonus = Random.Range(0, 25);
+        if (randomBonus == 1)
+        {
+            bonus = Instantiate(bonus,transform.position, Quaternion.identity);
+        }
+        PlayerPrefs.SetInt("TotalScore", (100 + PlayerPrefs.GetInt("TotalScore")));
     }
 }

@@ -5,18 +5,18 @@ using UnityEngine.InputSystem;
 
 public class Ball : MonoBehaviour
 {
-    private AudioSource m_AudioSource;
+    private AudioSource audioImpact;
     private Vector2 inDirection;
     private Vector2 inNormal;
     private bool kicked = false;
-    private float speed =1.0f;
     private Rigidbody2D rb;
     private GameObject player;
     private GameObject otherBall = null;
+    private int score;
 
     private void Start()
     {
-        m_AudioSource = GetComponent<AudioSource>();
+        audioImpact = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         rb.Sleep();
@@ -25,7 +25,7 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        m_AudioSource.Play();
+        audioImpact.Play();
         inDirection = rb.velocity;
         inNormal = collision.contacts[0].normal;
         Vector2.Reflect(inDirection,inNormal);
