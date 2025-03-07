@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.iOS;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 
